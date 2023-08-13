@@ -1,14 +1,6 @@
 class Student:
-  # MSSV 
-  # ten 
-  # diemToan
-  # diemVan
-  # diemAnh
-  # DTB
-  # hanhKiem
-  # danhHieu
-  
-  def __init__(self, MSSV, ten, diemToan, diemVan, diemAnh, hanhKiem):
+  def __init__(self, MSSV, ten, diemToan, diemVan, diemAnh, 
+               hanhKiem):
     self.MSSV = MSSV
     self.ten = ten
     self.diemToan = diemToan
@@ -18,7 +10,8 @@ class Student:
     self.DTB = self.calculateDTB()
     self.danhHieu = self.handleDanhHieu(hanhKiem)
 
-  def update(self, MSSV, ten, diemToan, diemVan, diemAnh, hanhKiem):
+  def update(self, MSSV, ten, diemToan, diemVan, diemAnh, 
+             hanhKiem):
     self.MSSV = MSSV
     self.ten = ten
     self.diemToan = diemToan
@@ -29,7 +22,8 @@ class Student:
     self.danhHieu = self.handleDanhHieu(hanhKiem)
 
   def calculateDTB(self):
-    return round(((self.diemToan + self.diemVan + self.diemAnh) / 3), 2)
+    return round(((self.diemToan + self.diemVan + 
+                   self.diemAnh) / 3), 2)
 
   def handleDanhHieu(self, hanhKiem):
     match hanhKiem:
@@ -86,25 +80,29 @@ class Student:
             "\ndanhHieu: " + str(self.danhHieu))
   
   def hocSinhGioi(self) :
-    if (self.DTB >= 8.0 and self.diemToan >= 6.5 and self.diemVan >= 6.5 and 
+    if (self.DTB >= 8.0 and self.diemToan >= 6.5 and 
+        self.diemVan >= 6.5 and 
         self.diemAnh >= 6.5):
       return True
     return False
 
   def hocSinhKha(self) :
-    if (self.DTB >= 6.5 and self.diemToan >= 5.0 and self.diemVan >= 5.0 and 
+    if (self.DTB >= 6.5 and self.diemToan >= 5.0 and 
+        self.diemVan >= 5.0 and 
         self.diemAnh >= 5.0):
       return True
     return False
   
   def hocSinhTB(self) :
-    if (self.DTB >= 5.0 and self.diemToan >= 3.5 and self.diemVan >= 3.5 and 
+    if (self.DTB >= 5.0 and self.diemToan >= 3.5 and 
+        self.diemVan >= 3.5 and 
         self.diemAnh >= 3.5):
       return True
     return False
   
   def hocSinhYeu(self) :
-    if (self.DTB >= 3.5 and self.diemToan >= 2.0 and self.diemVan >= 2.0 and 
+    if (self.DTB >= 3.5 and self.diemToan >= 2.0 and 
+        self.diemVan >= 2.0 and 
         self.diemAnh >= 2.0):
       return True
     return False
