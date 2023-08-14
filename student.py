@@ -1,83 +1,78 @@
 class Student:
-  def __init__(self, MSSV, ten, diemToan, diemVan, diemAnh, 
+  def __init__(self, MSHS, ten, diemToan, diemVan, diemAnh, 
                hanhKiem):
-    self.MSSV = MSSV
+    self.MSHS = MSHS
     self.ten = ten
-    self.diemToan = diemToan
-    self.diemVan = diemVan
-    self.diemAnh = diemAnh
-    self.hanhKiem = hanh_kiem[hanhKiem]
+    self.diemToan = float(diemToan)
+    self.diemVan = float(diemVan)
+    self.diemAnh = float(diemAnh)
+    self.hanhKiem = hanhKiem
     self.DTB = self.calculateDTB()
-    self.danhHieu = self.handleDanhHieu(hanhKiem)
+    self.danhHieu = self.handleDanhHieu()
 
-  def update(self, MSSV, ten, diemToan, diemVan, diemAnh, 
+  def update(self, ten, diemToan, diemVan, diemAnh, 
              hanhKiem):
-    self.MSSV = MSSV
     self.ten = ten
-    self.diemToan = diemToan
-    self.diemVan = diemVan
-    self.diemAnh = diemAnh
-    self.hanhKiem = hanh_kiem[hanhKiem]
+    self.diemToan = float(diemToan)
+    self.diemVan = float(diemVan)
+    self.diemAnh = float(diemAnh)
+    self.hanhKiem = hanhKiem
     self.DTB = self.calculateDTB()
-    self.danhHieu = self.handleDanhHieu(hanhKiem)
+    self.danhHieu = self.handleDanhHieu()
 
   def calculateDTB(self):
     return round(((self.diemToan + self.diemVan + 
                    self.diemAnh) / 3), 2)
 
-  def handleDanhHieu(self, hanhKiem):
-    match hanhKiem:
+  def handleDanhHieu(self):
+    match self.hanhKiem:
       case 'T':
         if (self.hocSinhGioi()):
-          return danh_hieu['G']
+          return 'G'
         elif (self.hocSinhKha()):
-          return danh_hieu['K']
+          return 'K'
         elif (self.hocSinhTB()):
-          return danh_hieu['TB']
+          return 'TB'
         elif (self.hocSinhYeu()):
-          return danh_hieu['Y']
+          return 'Y'
         else:
-          return danh_hieu['Kem']
+          return 'Kem'
           
       case 'K':
         if (self.hocSinhKha()):
-          return danh_hieu['K']
+          return 'K'
         elif (self.hocSinhTB()):
-          return danh_hieu['TB']
+          return 'TB'
         elif (self.hocSinhYeu()):
-          return danh_hieu['Y']
+          return 'Y'
         else:
-          return danh_hieu['Kem']
+          return 'Kem'
           
       case 'TB':
         if (self.hocSinhTB()):
-          return danh_hieu['TB']
+          return 'TB'
         elif (self.hocSinhYeu()):
-          return danh_hieu['Y']
+          return 'Y'
         else:
-          return danh_hieu['Kem']
+          return 'Kem'
           
       case 'Y':
         if (self.hocSinhYeu()):
-          return danh_hieu['Y']
+          return 'Y'
         else:
-          return danh_hieu['Kem']
+          return 'Kem'
           
       case 'Kem':
-        return danh_hieu['Kem']
+        return 'Kem'
       
       case other:
         return "Danh hiệu không hợp lệ."
 
   def __str__(self):
-    return ("MSSV: " + str(self.MSSV) + 
-            "\nten: " + str(self.ten) + 
-            "\ndiemToan: " + str(self.diemToan) + 
-            "\ndiemVan: " + str(self.diemVan) + 
-            "\ndiemAnh: " + str(self.diemAnh) + 
-            "\nhanhKiem: " + str(self.hanhKiem) + 
-            "\nDTB: " + str(self.DTB) + 
-            "\ndanhHieu: " + str(self.danhHieu))
+    return ("|  %-12s   %-18s   %-10s   %-10s   %-10s   %-11s   %-4s   %-23s |" % 
+            (str(self.MSHS), str(self.ten), str(self.diemToan), str(self.diemVan), 
+             str(self.diemAnh), str(hanh_kiem[self.hanhKiem]), str(self.DTB), 
+             str(danh_hieu[self.danhHieu])))
   
   def hocSinhGioi(self) :
     if (self.DTB >= 8.0 and self.diemToan >= 6.5 and 
